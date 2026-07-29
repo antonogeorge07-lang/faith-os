@@ -1,0 +1,26 @@
+# Node
+node_modules/
+
+# Build
+dist/
+coverage/
+*.tsbuildinfo
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+npm-debug.log*

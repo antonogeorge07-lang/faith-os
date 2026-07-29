@@ -1,0 +1,7 @@
+{
+  "name": "@faith-os/cli",
+  "version": "0.2.0-alpha",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts"
+}
