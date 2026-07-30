@@ -14,5 +14,13 @@
   },
   "engines": {
     "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "lucide-react": "^1.27.0"
   }
 }

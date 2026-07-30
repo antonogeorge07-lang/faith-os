@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "auto_generated_route": {
+      "app_name": "Autonomous Operations Center",
+      "headline_kpi": "99.9% Uptime",
+      "chart_values": [
+        10,
+        45,
+        30,
+        80,
+        95
+      ]
+    }
+  }
+}
