@@ -4,7 +4,10 @@ import threading
 import time
 
 import uvicorn
-import webview
+try:
+    import webview
+except ImportError:
+    webview = None
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -369,4 +372,14 @@ def main() -> None:
     webview.start()
 
 if __name__ == "__main__":
-    main()
+    # Force headless server mode if running in Docker or cloud
+    if _deployment_type() == "cloud" or os.environ.get("RUN_MODE") == "docker" or webview is None:
+        uvicorn.run("faith_os:app", host="0.0.0.0", port=FAITH_OS_PORT)
+    else:
+        def start_server():
+            uvicorn.run(app, host=FAITH_OS_HOST, port=FAITH_OS_PORT)
+
+        t = threading.Thread(target=start_server, daemon=True)
+        t.start()
+        window = webview.create_window("FAITH OS", f"http://{FAITH_OS_HOST}:{FAITH_OS_PORT}", width=1280, height=800)
+        webview.start()
