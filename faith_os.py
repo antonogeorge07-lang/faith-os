@@ -383,3 +383,10 @@ if __name__ == "__main__":
         t.start()
         window = webview.create_window("FAITH OS", f"http://{FAITH_OS_HOST}:{FAITH_OS_PORT}", width=1280, height=800)
         webview.start()
+
+# Mount Compliance API Core
+try:
+    from compliance_routes import router as compliance_router
+    app.include_router(compliance_router, prefix='/api/v1')
+except Exception as e:
+    print(f'Error mounting compliance router: {e}')
