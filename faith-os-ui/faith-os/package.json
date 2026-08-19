@@ -1,0 +1,26 @@
+{
+  "name": "faith-os",
+  "version": "0.2.0-alpha",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/workbench run dev",
+    "build": "npm --workspace apps/workbench run build",
+    "preview": "npm --workspace apps/workbench run preview",
+    "lint": "npm --workspace apps/workbench run lint"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "lucide-react": "^1.27.0"
+  }
+}

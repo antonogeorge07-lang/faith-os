@@ -1,0 +1,18 @@
+{
+  "pages": {
+    "autonomous_stream": {
+      "app_name": "Autonomous Agent Alpha Node",
+      "headline_kpi": "68% Efficiency",
+      "chart_values": [
+        69,
+        87,
+        72,
+        58,
+        60,
+        68
+      ],
+      "status_badge": "Agent AGENT-77X Active",
+      "badge_color": "violet"
+    }
+  }
+}

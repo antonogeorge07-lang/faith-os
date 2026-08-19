@@ -1,0 +1,17 @@
+{
+  "pages": {
+    "sprint_telemetry": {
+      "app_name": "Jira Agile Delivery Deck",
+      "headline_kpi": "53 Points",
+      "chart_values": [
+        45,
+        56,
+        43,
+        56,
+        73
+      ],
+      "status_badge": "Live Pipeline Active",
+      "badge_color": "emerald"
+    }
+  }
+}
