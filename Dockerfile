@@ -1,16 +1,21 @@
-FROM node:20-alpine AS frontend-build
-WORKDIR /app/faith-os-ui
-COPY faith-os-ui/package*.json ./
-RUN npm install
-COPY faith-os-ui/ ./
-RUN npm run build
-
 FROM python:3.11-slim
+
 WORKDIR /app
-COPY requirements.txt ./
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
-COPY --from=frontend-build /app/faith-os-ui/dist ./faith-os-ui/dist
+
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8999
-CMD ["python3", "faith_os.py"]
+
+ENTRYPOINT ["/app/entrypoint.sh"]
