@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  faith-wire-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=8085
+      - FAITH_BEARER_SECRET=${FAITH_BEARER_SECRET:-faith_prod_enterprise_sovereign_2026}
+    volumes:
+      - merkle_data:/app/data
+    networks:
+      - faith-internal-net
+
+  faith-ocr-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: always
+    environment:
+      - ENVIRONMENT=production
+      - PORT=8999
+    volumes:
+      - vault_data:/app/vault_storage
+    networks:
+      - faith-internal-net
+
+  faith-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - faith-wire-proxy
+      - faith-ocr-backend
+    networks:
+      - faith-internal-net
+
+volumes:
+  merkle_data:
+  vault_data:
+
+networks:
+  faith-internal-net:
+    driver: bridge
